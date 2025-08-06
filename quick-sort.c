@@ -9,12 +9,12 @@ void swap(int *a, int *b)
 }
 
 // Partition function
-int partition(int arr[], int low, int hight)
+int partition(int arr[], int low, int high)
 {
-    int pivot = arr[hight];
+    int pivot = arr[high];
     int i = (low - 1);
 
-    for (int j = low; j < hight; j++)
+    for (int j = low; j < high; j++)
     {
         if (arr[j] < pivot)
         {
@@ -23,7 +23,19 @@ int partition(int arr[], int low, int hight)
         }
     }
 
-    swap(&arr[i + 1], arr[hight]);
+    swap(&arr[i + 1], arr[high]);
 
     return (i + 1);
+}
+
+// QuuickSort function
+void quickSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int pi = partition(arr, low, high);
+
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
 }
